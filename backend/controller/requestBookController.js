@@ -116,7 +116,12 @@ const postIssueBooks = async (req, res) => {
   const { title } = bookDetails;
 
   // Check if user has previously requested for same book with id
-  const checkPrevRequest = await BookTransaction.find({ userId, bookId });
+  const sanitizedUserId = String(userId);
+  const sanitizedBookId = String(bookId)
+  const checkPrevRequest = await BookTransaction.find({ 
+    userId: sanitizedUserId, 
+    bookId: sanitizedBookId 
+  });
 
   if (checkPrevRequest.length > 0) {
     // SOME is used to check if any book transaction has isReturned value set to false
