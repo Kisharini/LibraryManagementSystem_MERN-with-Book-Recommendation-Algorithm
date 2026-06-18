@@ -12,7 +12,7 @@ const generateAccessToken = (user) => {
       id: user._id, 
       userType: user.userType 
     },
-    process.env.JWT_ACCESS_SECRET,
+    process.env.JWT_SECRET,
     { expiresIn: '15m' }
   );
 };
